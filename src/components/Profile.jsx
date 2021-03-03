@@ -15,18 +15,18 @@ export default function Profile({ profile, children }) {
               {profile.gen}기/{profile.part.join("/")}
             </Part>
           </ProfileTitle>
-          <KeywordsContainer>
+          <KeywordList>
             {profile.keywords.map((keyword) => (
               <Keyword key={keyword}>#{keyword}</Keyword>
             ))}
-          </KeywordsContainer>
+          </KeywordList>
         </ProfileMetadata>
         <ProfileFooter>
-          <InterestsContainer>
+          <InterestList>
             {profile.interests.map((interest) => (
               <Interest key={interest}>{interest}</Interest>
             ))}
-          </InterestsContainer>
+          </InterestList>
         </ProfileFooter>
       </ProfileContent>
     </Wrapper>
@@ -115,7 +115,7 @@ const Part = styled.small`
   font-size: 0.8rem;
 `;
 
-const KeywordsContainer = styled.div`
+const KeywordList = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -128,7 +128,7 @@ const Keyword = styled.span`
   }
 `;
 
-const InterestsContainer = styled.div`
+const InterestList = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

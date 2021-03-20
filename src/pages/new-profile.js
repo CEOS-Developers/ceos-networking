@@ -6,6 +6,9 @@ import MultiPillSelector from "../components/MultiPillSelector";
 import SinglePillSelector from "../components/SinglePillSelector";
 import CreatableSelect from "react-select/creatable";
 import Layout from "../templates/Layout";
+import useSWR from "swr";
+import { fetcher } from "../fetchers";
+import { initial } from "lodash";
 
 const parts = [
   { value: "기획", label: "기획" },
@@ -15,14 +18,17 @@ const parts = [
 ];
 
 export default function NewProfilePage() {
+  // form inputs
   const { register, handleSubmit, watch, errors } = useForm();
   const [part, setPart] = useState(null);
   const [interests, setInterests] = useState([]);
   const [keywords, setKeywords] = useState([]);
 
-  useEffect(() => {
-    
-  }, [])
+  // set keywords
+  let { data: initialKeywords, error } = useSWR("/api/v1/keywords", fetcher);
+  initialKeywords = initialKeywords?.map((k) => ({ value: k.id, label: k.name }))
+
+  useEffect(() => {}, []);
   return (
     <Layout alignItems="center">
       <Title>프로필 작성하기</Title>
@@ -70,6 +76,7 @@ export default function NewProfilePage() {
             name="keywords"
             isMulti
             placeholder="자신을 나타낼 수 있는 키워드"
+            options={initialKeywords}
             onChange={(values) => {
               setKeywords(values);
             }}

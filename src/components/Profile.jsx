@@ -1,33 +1,37 @@
 import React from "react";
 import styled from "styled-components";
 
+const convertPartEnumToText = (partEnum) => {
+  switch (partEnum) {
+    case 'DEVELOP':
+      return '개발'
+    case 'PLAN':
+      return '기획'
+    case 'DESIGN':
+      return '디자인'
+  }
+}
+
 export default function Profile({ profile, children }) {
   return (
     <Wrapper>
       <ProfileImageContainer>
-        <ProfileImage src={profile.imgSrc}></ProfileImage>
+        <ProfileImage src={profile.image}></ProfileImage>
       </ProfileImageContainer>
       <ProfileContent>
         <ProfileMetadata>
           <ProfileTitle>
             <Name>{profile.name}</Name>
             <Part>
-              {profile.gen}기/{profile.part.join("/")}
+              {profile.gen}기/{convertPartEnumToText(profile.part)}
             </Part>
           </ProfileTitle>
           <KeywordList>
             {profile.keywords.map((keyword) => (
-              <Keyword key={keyword}>#{keyword}</Keyword>
+              <Keyword key={keyword.id}>#{keyword.name}</Keyword>
             ))}
           </KeywordList>
         </ProfileMetadata>
-        <ProfileFooter>
-          <InterestList>
-            {profile.interests.map((interest) => (
-              <Interest key={interest}>{interest}</Interest>
-            ))}
-          </InterestList>
-        </ProfileFooter>
       </ProfileContent>
     </Wrapper>
   );

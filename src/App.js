@@ -1,7 +1,4 @@
-import styled from "styled-components";
-import Header from "./components/Header";
-import ProfileList from "./components/ProfileList";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import IndexPage from "./pages";
 import NewProfilePage from "./pages/new-profile";
 

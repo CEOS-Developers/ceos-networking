@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import styled from "styled-components";
@@ -20,6 +20,9 @@ export default function NewProfilePage() {
   const [interests, setInterests] = useState([]);
   const [keywords, setKeywords] = useState([]);
 
+  useEffect(() => {
+    
+  }, [])
   return (
     <Layout alignItems="center">
       <Title>프로필 작성하기</Title>
